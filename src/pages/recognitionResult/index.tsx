@@ -7,7 +7,13 @@ const RecognitionResult: React.FC<{}> = () => {
   return (
     <View className='index'>
       <Image
-        style={{ width: '90%', height: '250px', margin: '10px auto', display: 'flex', alignItems: 'center' }}
+        style={{
+          width: '90%',
+          height: '250px',
+          margin: '10px auto',
+          display: 'flex',
+          alignItems: 'center'
+        }}
         src={imageUrl}
       />
     </View>
