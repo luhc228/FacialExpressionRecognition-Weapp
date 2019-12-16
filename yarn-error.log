@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add taro-axios
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add src/components/CustomPageStatus --silent --no-progress
 
 PATH: 
-  C:\software\Git\mingw64\bin;C:\software\Git\usr\bin;C:\Users\luhengchang\bin;C:\cmder\bin;C:\cmder\vendor\bin;C:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;C:\cmder\vendor\conemu-maximus5;C:\cmder\vendor\conemu-maximus5\ConEmu;E:\software\NetSarang\Xshell 6;C:\Python36\Scripts;C:\Python36;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;E:\software\SDUicloud;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Program Files\MySQL\MySQL Server 5.7\bin;C:\ProgramData\nvm;C:\Program Files\nodejs;C:\ProgramData\nvm;C:\Program Files (x86)\Yarn\bin;C:\Users\luhengchang\AppData\Local\Yarn\bin;C:\tools\ruby26\bin;C:\tools\DevKit2\bin;C:\software\Git\cmd;E:\software\NVIDIA GPU Computing Toolkit\CUDA\v10.0\libnvvp;E:\software\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin;E:\software\NVIDIA GPU Computing Toolkit\CUDA\v10.0\extras\CUPTI\libx64;E:\software\NVIDIA GPU Computing Toolkit\CUDA\v10.0\cudnn\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Users\luhengchang\AppData\Local\Microsoft\WindowsApps;E:\software\Bandizip;E:\software\ModelSim 10.4\win64;C:\Users\luhengchang\AppData\Local\Yarn\bin;C:\software\Microsoft VS Code\bin;C:\Users\luhengchang\AppData\Local\hyper\app-3.0.2\resources\bin;C:\software\JetBrains\WebStorm 2019.3\bin;C:\software\Git\cmd;C:\software\Git\mingw64\bin;C:\software\Git\usr\bin;C:\cmder
+  C:\ProgramData\nvm\v10.16.3\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;D:\workspace\facial-expression-recognition-weapp\node_modules\.bin;C:\ProgramData\nvm\v10.16.3\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;D:\workspace\facial-expression-recognition-weapp\node_modules\.bin;C:\cmder\bin;C:\cmder\vendor\bin;C:\cmder\vendor\conemu-maximus5\ConEmu\Scripts;C:\cmder\vendor\conemu-maximus5;C:\cmder\vendor\conemu-maximus5\ConEmu;E:\software\NetSarang\Xshell 6\;C:\Python36\Scripts\;C:\Python36\;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;E:\software\SDUicloud;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Program Files\MySQL\MySQL Server 5.7\bin;C:\ProgramData\nvm;C:\Program Files\nodejs;C:\ProgramData\nvm;C:\Program Files (x86)\Yarn\bin\;C:\Users\luhengchang\AppData\Local\Yarn\bin;C:\tools\ruby26\bin;C:\tools\DevKit2\bin;C:\software\Git\cmd;E:\software\NVIDIA GPU Computing Toolkit\CUDA\v10.0\libnvvp;E:\software\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin;E:\software\NVIDIA GPU Computing Toolkit\CUDA\v10.0\extras\CUPTI\libx64;E:\software\NVIDIA GPU Computing Toolkit\CUDA\v10.0\cudnn\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Users\luhengchang\AppData\Local\Microsoft\WindowsApps;E:\software\Bandizip\;E:\software\ModelSim 10.4\win64;C:\Users\luhengchang\AppData\Local\Yarn\bin;C:\software\Microsoft VS Code\bin;C:\Users\luhengchang\AppData\Local\hyper\app-3.0.2\resources\bin;C:\software\JetBrains\WebStorm 2019.3\bin;C:\software\Git\cmd;C:\software\Git\mingw64\bin;C:\software\Git\usr\bin;C:\cmder
 
 Yarn version: 
   1.17.3
@@ -14,7 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'D:\workspace\facial-expression-recognition-weapp\node_modules\_@types_prop-types@15.7.3@@types\prop-types'
+  Error: https://registry.npm.taobao.org/src%2fcomponents/CustomPageStatus: Request "https://registry.npm.taobao.org/src%2fcomponents/CustomPageStatus" returned a 405
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65948:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140464:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141436:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141358:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1145:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
 
 npm manifest: 
   {

@@ -1,3 +1,5 @@
+const path = require('path');
+
 const config = {
   projectName: 'facial-expression-recognition-weapp',
   date: '2019-12-15',
@@ -85,6 +87,12 @@ const config = {
         }
       }
     }
+  },
+  alias: {
+    '@/components': path.resolve(__dirname, '..', 'src/components'),
+    '@/utils': path.resolve(__dirname, '..', 'src/utils'),
+    '@/enums': path.resolve(__dirname, '..', 'src/enums'),
+    '@/project': path.resolve(__dirname, '..', 'project.config.json'),
   }
 }
 
