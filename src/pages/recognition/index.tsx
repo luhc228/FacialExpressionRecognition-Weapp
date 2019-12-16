@@ -5,6 +5,8 @@ import CustomPageStatus from '@/components/CustomPageStatus';
 import { DevicePosition, PageStatus } from '@/enums/index';
 import appConfig from '../../appConfig';
 
+const recognitionImageUploadUrl = appConfig.imageUploadUrl + '/photo-recognition/image/upload';
+
 const Recognition: Taro.FC<{}> = () => {
 
   const [isOpened, changeIsOpened] = useState(false);
@@ -19,9 +21,22 @@ const Recognition: Taro.FC<{}> = () => {
     cameraContext.takePhoto({
       quality: 'high',
       success: (res) => {
-        changeIsOpened(true);
-        changeStatus(PageStatus.success);
-        NavigateToResultPage(res.tempImagePath)
+        console.log(res);
+
+        Taro.request({
+          url: recognitionImageUploadUrl,
+          method: 'POST',
+          data: {
+            image: res.tempImagePath
+          }
+        }).then((response) => {
+          changeIsOpened(true);
+          changeStatus(PageStatus.success);
+          NavigateToResultPage(res.tempImagePath, response.data.resultImageName)
+        }).catch((err) => {
+          console.error(err.errMeg);
+        })
+
       },
     })
   }
@@ -45,7 +60,7 @@ const Recognition: Taro.FC<{}> = () => {
       changeIsOpened(true);
       changeStatus(PageStatus.loading);
       const tempFilePaths = res.tempFilePaths;
-      handleUploadFile(tempFilePaths[0])
+      handleUploadFile(tempFilePaths[0]);
     }).catch(() => {
       changeIsOpened(true);
       changeStatus(PageStatus.error)
@@ -56,19 +71,20 @@ const Recognition: Taro.FC<{}> = () => {
    * 上传图片
    * @param filePath 
    */
-  const handleUploadFile = (filePath: string) => {
+  const handleUploadFile = (tempFilePath: string) => {
     changeIsOpened(true);
     changeStatus(PageStatus.loading);
     Taro.uploadFile({
-      url: appConfig.imageUploadUrl + '/photo-recognition/image/upload',
-      filePath,
+      url: recognitionImageUploadUrl,
+      filePath: tempFilePath,
       name: 'image',
     }).then((res) => {
-      const data = res.data;
-      console.log(data);
+      const response: { data: { [k: string]: string } } = JSON.parse(res.data);
+
       changeIsOpened(true);
       changeStatus(PageStatus.success);
-      NavigateToResultPage(filePath);
+
+      NavigateToResultPage(tempFilePath, response.data.resultImageName);
     }).catch(() => {
       changeIsOpened(true);
       changeStatus(PageStatus.error)
@@ -79,9 +95,9 @@ const Recognition: Taro.FC<{}> = () => {
    * 跳转到识别结果展示页面
    * @param filePath 
    */
-  const NavigateToResultPage = (filePath: string) => {
+  const NavigateToResultPage = (tempFilePath: string, resultImageName: string) => {
     Taro.navigateTo({
-      url: `/pages/recognitionResult/index?imageUrl=${filePath}`
+      url: `/pages/recognitionResult/index?tempFilePath=${tempFilePath}&resultImageName=${resultImageName}`
     })
   };
   return (

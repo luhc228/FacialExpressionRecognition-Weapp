@@ -24,7 +24,6 @@ const statusModels = {
 
 const PageToast: Taro.FC<PageStatusToast> = ({ statusType, isOpened }) => {
   const content = statusModels[statusType];
-
   return (
     <AtToast isOpened={isOpened} status={statusType} text={content.text}></AtToast>
   )
