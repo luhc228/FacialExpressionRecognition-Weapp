@@ -1,5 +1,5 @@
 import Taro, { useState } from '@tarojs/taro';
-import { View, Camera } from '@tarojs/components';
+import { View, Camera, Image } from '@tarojs/components';
 import { AtButton } from 'taro-ui';
 import CustomPageStatus from '@/components/CustomPageStatus';
 import { DevicePosition, PageStatus } from '@/enums/index';
@@ -97,10 +97,11 @@ const Recognition: Taro.FC<{}> = () => {
           className='camera'
         />
       </View>
-      <AtButton onClick={handleChangeDevicePosition}>{devicePosition}</AtButton>
-      <AtButton type='primary' onClick={handleTakePhoto} >Take Photo</AtButton>
-      <AtButton type='secondary' onClick={handleChooseImage}>Select Photo</AtButton>
-
+      <View className='btnsWrap'>
+        <Image src={require('../../asserts/gallery.png')} style={{ width: '32px', height: '32px' }} onClick={handleChooseImage} />
+        <Image src={require('../../asserts/circle.png')} style={{ width: '75px', height: '75px' }} onClick={handleTakePhoto} />
+        <Image src={require('../../asserts/camera-reverse.png')} style={{ width: '40px', height: '40px' }} onClick={handleChangeDevicePosition} />
+      </View>
     </View>
   )
 }

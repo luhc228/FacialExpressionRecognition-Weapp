@@ -1,6 +1,20 @@
+.index {
+  height: 100%;
+}
+
 .camera {
   width: 100%;
-  margin: 20px auto;
+  height: calc(100vh - 180px) !important;
+  margin: 0 auto;
   display: flex;
   align-items: center;
+}
+
+.btnsWrap {
+  height: 180px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: black;
 }
