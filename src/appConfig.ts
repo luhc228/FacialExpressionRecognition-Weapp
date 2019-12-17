@@ -1,4 +1,4 @@
 export default {
-  imageUploadUrl: 'http://127.0.0.1:8000',
-  baseUrl: 'http://127.0.0.1:8000',
+  imageUploadUrl: 'http://remote.wesdu.cn:38000',
+  baseUrl: 'http://remote.wesdu.cn:38000',
 }

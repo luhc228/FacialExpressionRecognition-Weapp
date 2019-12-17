@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "facial-expression-recognition-weapp",
 	"description": "weapp",
-	"appid": "wxcded703d9353368c",
+	"appid": "wx0cd33c5bdaad665c",
 	"setting": {
 		"urlCheck": false,
 		"es6": false,

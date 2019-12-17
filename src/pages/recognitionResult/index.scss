@@ -1,0 +1,25 @@
+.resultImage {
+  width: 90%;
+  height: 500px;
+  margin: 60px auto;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  clip: rect(0 1350px 550px 210px);
+  transform: scale(1.5, 1.15);
+  right: 200px;
+}
+
+.originImage {
+  width: 90%;
+  height: 500px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+}
+
+.btnWrap {
+  position: relative;
+  top: 600px;
+  margin-bottom: 40px;
+}

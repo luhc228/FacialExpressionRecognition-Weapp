@@ -5,6 +5,7 @@ import { PageStatus } from '@/enums/index';
 import CustomPageStatus from '@/components/CustomPageStatus';
 import useInterval from '../../hooks/useInterval';
 import appConfig from '../../appConfig';
+import './index.scss';
 
 const RecognitionResult: React.FC<{}> = () => {
   const [status, changeStatus] = useState(PageStatus.loading);
@@ -40,29 +41,19 @@ const RecognitionResult: React.FC<{}> = () => {
 
   return (
     <View className='index'>
-      <CustomPageStatus statusType={status} isOpened={isOpened} />
+      <CustomPageStatus statusType={status} isOpened={isOpened} duration={status === PageStatus.loading ? 0 : undefined} />
       <Image
-        style={{
-          width: '90%',
-          height: '300px',
-          margin: '10px auto',
-          display: 'flex',
-          alignItems: 'center'
-        }}
+        className='originImage'
         src={tempFilePath}
       />
-      <View>The Result is：</View>
+      <View style={{ marginLeft: 10 }}>The Result is：</View>
       <Image
-        style={{
-          width: '90%',
-          height: '300px',
-          margin: '10px auto',
-          display: 'flex',
-          alignItems: 'center'
-        }}
+        className='resultImage'
         src={resultImageUrl}
       />
-      <AtButton type='primary' onClick={() => { Taro.navigateBack() }}>Take A Photo Again</AtButton>
+      <View className='btnWrap'>
+        <AtButton type='primary' onClick={() => { Taro.navigateBack() }}>Take A Photo Again</AtButton>
+      </View>
     </View>
   )
 }

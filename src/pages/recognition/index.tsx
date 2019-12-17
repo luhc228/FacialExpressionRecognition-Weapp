@@ -4,6 +4,7 @@ import { AtButton } from 'taro-ui';
 import CustomPageStatus from '@/components/CustomPageStatus';
 import { DevicePosition, PageStatus } from '@/enums/index';
 import appConfig from '../../appConfig';
+import './index.scss';
 
 const recognitionImageUploadUrl = appConfig.imageUploadUrl + '/photo-recognition/image/upload';
 
@@ -21,22 +22,7 @@ const Recognition: Taro.FC<{}> = () => {
     cameraContext.takePhoto({
       quality: 'high',
       success: (res) => {
-        console.log(res);
-
-        Taro.request({
-          url: recognitionImageUploadUrl,
-          method: 'POST',
-          data: {
-            image: res.tempImagePath
-          }
-        }).then((response) => {
-          changeIsOpened(true);
-          changeStatus(PageStatus.success);
-          NavigateToResultPage(res.tempImagePath, response.data.resultImageName)
-        }).catch((err) => {
-          console.error(err.errMeg);
-        })
-
+        handleUploadFile(res.tempImagePath);
       },
     })
   }
@@ -103,14 +89,16 @@ const Recognition: Taro.FC<{}> = () => {
   return (
 
     <View className='index'>
-      <CustomPageStatus statusType={status} isOpened={isOpened} />
-      <Camera
-        device-position={devicePosition}
-        flash='off'
-        style={{ width: '90%', height: '300px', margin: '10px auto', display: 'flex', alignItems: 'center' }}
-      />
+      <CustomPageStatus statusType={status} isOpened={isOpened} duration={status === PageStatus.loading ? 0 : undefined} />
+      <View style={{ zIndex: 1 }}>
+        <Camera
+          device-position={devicePosition}
+          flash='off'
+          className='camera'
+        />
+      </View>
       <AtButton onClick={handleChangeDevicePosition}>{devicePosition}</AtButton>
-      <AtButton type='primary' onClick={handleTakePhoto}>Take Photo</AtButton>
+      <AtButton type='primary' onClick={handleTakePhoto} >Take Photo</AtButton>
       <AtButton type='secondary' onClick={handleChooseImage}>Select Photo</AtButton>
 
     </View>

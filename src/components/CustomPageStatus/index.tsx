@@ -5,6 +5,7 @@ import { PageStatus } from '@/enums/index';
 interface PageStatusToast {
   statusType: PageStatus.loading | PageStatus.success | PageStatus.error;
   isOpened: boolean;
+  duration?: number;
 }
 
 const statusModels = {
@@ -22,13 +23,15 @@ const statusModels = {
   },
 }
 
-const PageToast: Taro.FC<PageStatusToast> = ({ statusType, isOpened }) => {
+const PageToast: Taro.FC<PageStatusToast> = ({ statusType, isOpened, duration }) => {
   const content = statusModels[statusType];
   return (
-    <AtToast isOpened={isOpened} status={statusType} text={content.text}></AtToast>
+    <AtToast isOpened={isOpened} status={statusType} text={content.text} duration={duration}></AtToast>
   )
 }
 
-
+PageToast.defaultProps = {
+  duration: 3000
+}
 
 export default PageToast;
