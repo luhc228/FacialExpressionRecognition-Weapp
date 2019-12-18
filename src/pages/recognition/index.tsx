@@ -1,6 +1,5 @@
 import Taro, { useState } from '@tarojs/taro';
 import { View, Camera, Image } from '@tarojs/components';
-import { AtButton } from 'taro-ui';
 import CustomPageStatus from '@/components/CustomPageStatus';
 import { DevicePosition, PageStatus } from '@/enums/index';
 import appConfig from '../../appConfig';
@@ -20,7 +19,7 @@ const Recognition: Taro.FC<{}> = () => {
   const handleTakePhoto = () => {
     const cameraContext = Taro.createCameraContext()
     cameraContext.takePhoto({
-      quality: 'high',
+      quality: 'low',
       success: (res) => {
         handleUploadFile(res.tempImagePath);
       },
@@ -70,7 +69,9 @@ const Recognition: Taro.FC<{}> = () => {
       changeIsOpened(true);
       changeStatus(PageStatus.success);
 
-      NavigateToResultPage(tempFilePath, response.data.resultImageName);
+      const { resultImageName, imagePath, outputPath } = response.data;
+
+      NavigateToResultPage(tempFilePath, resultImageName, imagePath, outputPath);
     }).catch(() => {
       changeIsOpened(true);
       changeStatus(PageStatus.error)
@@ -81,9 +82,9 @@ const Recognition: Taro.FC<{}> = () => {
    * 跳转到识别结果展示页面
    * @param filePath 
    */
-  const NavigateToResultPage = (tempFilePath: string, resultImageName: string) => {
+  const NavigateToResultPage = (tempFilePath: string, resultImageName: string, imagePath: string, outputPath: string) => {
     Taro.navigateTo({
-      url: `/pages/recognitionResult/index?tempFilePath=${tempFilePath}&resultImageName=${resultImageName}`
+      url: `/pages/recognitionResult/index?tempFilePath=${tempFilePath}&resultImageName=${resultImageName}&imagePath=${imagePath}&outputPath=${outputPath}`
     })
   };
   return (

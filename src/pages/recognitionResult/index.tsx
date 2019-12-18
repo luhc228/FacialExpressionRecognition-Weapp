@@ -1,4 +1,4 @@
-import Taro, { useRouter, useState } from '@tarojs/taro';
+import Taro, { useRouter, useState, useEffect } from '@tarojs/taro';
 import { View, Image } from '@tarojs/components';
 import { AtButton } from 'taro-ui';
 import { PageStatus } from '@/enums/index';
@@ -14,9 +14,9 @@ const RecognitionResult: React.FC<{}> = () => {
   const [isIntervalRunning, setIsIntervalRunning] = useState(true);
 
   const router = useRouter();
-  const { params: { tempFilePath, resultImageName } } = router;
+  const { params: { tempFilePath, resultImageName, imagePath, outputPath } } = router;
 
-  useInterval(() => {
+  const handleGetResult = () => {
     Taro.request({
       url: appConfig.baseUrl + '/photo-recognition/result/get',
       data: {
@@ -27,17 +27,37 @@ const RecognitionResult: React.FC<{}> = () => {
       const { success } = response;
       if (success) {
         const imageUrl = appConfig.baseUrl + response.data.imageUrl;
-        console.log(imageUrl);
+
         setIsIntervalRunning(false);
         changeResultImageUrl(imageUrl);
         changeIsOpened(true);
         changeStatus(PageStatus.success);
       } else {
-
+        changeIsOpened(true);
       }
     })
+  };
 
+  const handleRunDetector = (imagePath: string, outputPath: string) => {
+    Taro.request({
+      url: appConfig.baseUrl + '/photo-recognition/run/detector',
+      method: 'POST',
+      data: {
+        imagePath: imagePath,
+        outputPath: outputPath,
+      }
+    })
+  }
+
+  useInterval(() => {
+    handleGetResult();
   }, isIntervalRunning ? 5000 : null);
+
+  useEffect(() => {
+    handleGetResult();
+    handleRunDetector(imagePath, outputPath);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <View className='index'>

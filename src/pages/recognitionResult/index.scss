@@ -6,7 +6,7 @@
   align-items: center;
   position: absolute;
   clip: rect(0 1350px 550px 210px);
-  transform: scale(1.5, 1.15);
+  transform: scale(1.5, 0.9);
   right: 200px;
 }
 
@@ -16,6 +16,7 @@
   margin: 20px auto;
   display: flex;
   align-items: center;
+  transform: scale(0.7, 1);
 }
 
 .btnWrap {
